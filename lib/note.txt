@@ -1,0 +1,31 @@
+
+- export PATH="/Users/vohoangtuit/DATA/DEVELOP/AndroidStudio/flutter_sdk/flutter/bin:$PATH" // change path
+- export PATH="/Users/tuvh/DATA/sdk/flutter/bin:$PATH"
+
+//todo bỏ log android >=12: /Users/tuvh/DATA/sdk/android/platform-tools/adb shell setprop log.tag.EGL_emulation ERROR
+
+todo update file pub
+> flutter clean
+> flutter pub get
+> cd ios
+> pod update || pod install // todo if error run:  'pod deintegrate' before
+
+- flutter pub run build_runner build // todo api
+- dart run build_runner build // todo drift db
+
+- flutter packages pub run build_runner build // todo floor db
+
+// flutter doctor
+// flutter run --release
+// flutter run --profile
+
+// flutter build ios --config-only --release
+
+
+2/ update flutter sdk
+Swich sdk
+> flutter channel stable // todo branch stable
+> flutter flutter channel beta // todo branch beta
+> flutter upgrade
+
+4
