@@ -1,6 +1,6 @@
+import 'package:chat_bot_ai/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-import 'package:robot/screens/main_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();

@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "vietravel.com.ai.robot" "\0"
-            VALUE "FileDescription", "robot" "\0"
+            VALUE "CompanyName", "vietravel.com.ai.chatbot" "\0"
+            VALUE "FileDescription", "chat_bot_ai" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "robot" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2026 vietravel.com.ai.robot. All rights reserved." "\0"
-            VALUE "OriginalFilename", "robot.exe" "\0"
-            VALUE "ProductName", "robot" "\0"
+            VALUE "InternalName", "chat_bot_ai" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 vietravel.com.ai.chatbot. All rights reserved." "\0"
+            VALUE "OriginalFilename", "chat_bot_ai.exe" "\0"
+            VALUE "ProductName", "chat_bot_ai" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

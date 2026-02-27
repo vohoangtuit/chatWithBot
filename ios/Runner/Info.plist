@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Robot Vietravel</string>
+	<string>Ai Vietravel</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -30,6 +30,8 @@
 	<string>App cần quyền Camera để nhận diện khách hàng.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>App cần quyền Micro để trò chuyện với khách hàng.</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>Ứng dụng cần quyền nhận diện giọng nói để chuyển lời nói thành văn bản.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

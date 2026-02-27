@@ -1,8 +1,9 @@
 class ChatModel {
   String? text;
   String? language;
+  List<Map<String, String>>? history;
 
-  ChatModel({this.text, this.language});
+  ChatModel({this.text,this.history, this.language});
 
   ChatModel.fromJson(Map<String, dynamic> json) {
     text = json['text'] ?? '';
@@ -11,6 +12,9 @@ class ChatModel {
  Map<String,dynamic> toJson() {
    Map<String,dynamic> data = <String,dynamic>{};
     data['text'] = text;
+    if(history!=null){
+      data['history'] = history;
+    }
     if(language!=null){
       data['language'] = language;
     }

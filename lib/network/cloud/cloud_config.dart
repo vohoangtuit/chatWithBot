@@ -1,9 +1,9 @@
 import 'dart:convert';
 
+import 'package:chat_bot_ai/network/cloud/cloud_api_provider.dart';
+import 'package:chat_bot_ai/screens/general/base_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:robot/network/cloud/cloud_api_provider.dart';
-import 'package:robot/screens/general/base_screen.dart';
 
 class CloudApiConfig{
   static String baseUrl ="https://us-central1-vietravel-app.cloudfunctions.net/";

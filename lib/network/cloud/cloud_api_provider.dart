@@ -1,8 +1,8 @@
 
+import 'package:chat_bot_ai/model/chat_model.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
-import 'package:robot/model/chat_model.dart';
 
 import 'cloud_response.dart';
 

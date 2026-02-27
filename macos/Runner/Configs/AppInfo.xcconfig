@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = robot
+PRODUCT_NAME = chat_bot_ai
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = vietravel.com.ai.robot.robot
+PRODUCT_BUNDLE_IDENTIFIER = vietravel.com.ai.chatbot.chatBotAi
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2026 vietravel.com.ai.robot. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2026 vietravel.com.ai.chatbot. All rights reserved.

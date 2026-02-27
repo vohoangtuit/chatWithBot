@@ -1,11 +1,11 @@
 import 'dart:convert';
 
+import 'package:chat_bot_ai/core/general_funstions.dart';
+import 'package:chat_bot_ai/core/loading_view.dart';
+import 'package:chat_bot_ai/core/resume.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:robot/core/general_funstions.dart';
-import 'package:robot/core/loading_view.dart';
-import 'package:robot/core/resume.dart';
 
 abstract class GeneralScreen<T extends ConsumerStatefulWidget> extends ConsumerState<T>
     with WidgetsBindingObserver,CoreFunctions {

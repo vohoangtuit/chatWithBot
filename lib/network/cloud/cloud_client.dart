@@ -1,8 +1,9 @@
 
+import 'package:chat_bot_ai/model/chat_model.dart';
+import 'package:chat_bot_ai/network/cloud/cloud_config.dart';
+import 'package:chat_bot_ai/network/cloud/cloud_response.dart';
 import 'package:dio/dio.dart';
-import 'package:robot/model/chat_model.dart';
-import 'package:robot/network/cloud/cloud_config.dart';
-import 'package:robot/network/cloud/cloud_response.dart';
+
 
 class CloudClient extends CloudApiConfig{
   CloudClient( super.screen) : super.internal();

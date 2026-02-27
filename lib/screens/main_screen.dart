@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:camera/camera.dart';
+import 'package:chat_bot_ai/model/chat_model.dart';
+import 'package:chat_bot_ai/screens/general/base_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
-import 'package:robot/model/chat_model.dart';
-import 'package:robot/screens/general/base_screen.dart';
 import 'package:rive/rive.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
@@ -30,6 +30,8 @@ class _MainScreenState extends BaseScreen<MainScreen> {
   final stt.SpeechToText _speech = stt.SpeechToText();
   bool _isConversing = false; // Đánh dấu đang trong cuộc hội thoại
   String _currentWords = ""; // Lưu câu khách đang nói
+  // BIẾN MỚI: Cuốn sổ lưu lịch sử trò chuyện
+  final List<Map<String, String>> _chatHistory = [];
 
   // --- Camera & ML Kit ---
   CameraController? _cameraController;
@@ -88,6 +90,7 @@ class _MainScreenState extends BaseScreen<MainScreen> {
         logI("Micro status: $status");
         // Khi nhận diện khoảng lặng (pauseFor), status sẽ chuyển thành 'done'
         if (status == 'done' && _currentWords.isNotEmpty && _isConversing) {
+          // ĐÂY MỚI LÀ LÚC GỬI API LÊN FIREBASE
           _sendToFirebase(_currentWords); // Gửi câu hoàn chỉnh lên Cloud
         }
       },
@@ -152,15 +155,22 @@ class _MainScreenState extends BaseScreen<MainScreen> {
     logI("🗣️ Khách nói: $userText");
     ChatModel data = ChatModel(
       text: userText,
+
     );
     await cloudClient.chatWithAi(data).then((response)async{
       String reply = '';
       if(response!=null){
         reply = response.reply!;
         logI("🤖 AI trả lời: ${response.reply}");
+        if(response.success!=null&& response.success!){
+       // NẾU THÀNH CÔNG -> GHI VÀO SỔ LỊCH SỬ CHO LẦN SAU
+          _chatHistory.add({'role': 'user', 'text': userText});
+          _chatHistory.add({'role': 'model', 'text': reply});
+        }
       }else{
         reply = "Dạ em bị lỗi kết nối ạ.";
       }
+
       // 2. KIỂM TRA LỜI TẠM BIỆT
       if (reply.contains("[END_CONVERSATION]")) {
         reply = reply.replaceAll("[END_CONVERSATION]", "").trim();
@@ -197,6 +207,8 @@ class _MainScreenState extends BaseScreen<MainScreen> {
     _hasGreeted = false;
     _firstSeenTime = null;
     if (fullReset) _lastSeenTime = null;
+    // BIẾN MỚI: Xóa trí nhớ khi khách đi mất
+    _chatHistory.clear();
     logI("🔄 Đã reset luồng hội thoại.");
   }
 
@@ -229,7 +241,7 @@ class _MainScreenState extends BaseScreen<MainScreen> {
               _isConversing = true; // Bật cờ hội thoại
               logI("🤖 AI: Khách đứng đủ 5s. Tiến hành chào!");
 
-              await _speak("Dạ Vietravel xin chào, em có thể tư vấn chuyến đi nào cho quý khách ạ?");
+              await _speak("Xin chào, em có thể hỗ trợ gì cho quý khách ạ?");
 
               // Chào xong -> Mở Mic nghe khách trả lời
               _startListening();
@@ -240,8 +252,10 @@ class _MainScreenState extends BaseScreen<MainScreen> {
           if (_lastSeenTime != null) {
             final secondsSinceLost = now.difference(_lastSeenTime!).inSeconds;
 
-            if (secondsSinceLost >= 2) {
+            if (secondsSinceLost >= 3) {
               logI("🤖 AI: Khách đã rời đi. Dừng mọi hoạt động.");
+              await _speak("Cảm ơn quý khách đã ghé thăm");
+
               _resetSystem(fullReset: true); // Cắt ngang STT và TTS ngay lập tức
             }
           }
@@ -308,7 +322,7 @@ class _MainScreenState extends BaseScreen<MainScreen> {
 
   Widget _viewBot() {
     return Expanded(
-      flex: 3,
+      flex: 1,
       child: Container(
         color: Colors.white,
         child: Center(
@@ -333,7 +347,7 @@ class _MainScreenState extends BaseScreen<MainScreen> {
 
   Widget _viewCamera() {
     return Expanded(
-      flex: 2,
+      flex: 1,
       child: Container(
         width: double.infinity,
         decoration: const BoxDecoration(
