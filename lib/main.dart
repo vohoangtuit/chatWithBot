@@ -1,11 +1,20 @@
 import 'package:chat_bot_ai/screens/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rive/rive.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  FlutterError.onError = (FlutterErrorDetails details) {
+    FlutterError.presentError(details); // show trên UI
+    FlutterError.dumpErrorToConsole(details); // log console
+  };
   await RiveNative.init();
-  runApp(const MyApp());
+  runApp(
+    ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

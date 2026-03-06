@@ -1,5 +1,5 @@
 name: chat_bot_ai
-description: "Ai Vietravel"
+description: "AI Vietravel"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -18,22 +18,26 @@ dependencies:
   intl: ^0.20.2
   easy_localization: ^3.0.8
   flutter_riverpod: ^3.2.1
-  audioplayers: ^6.5.1
+  audioplayers: ^6.6.0
   permission_handler: ^12.0.1
   flutter_sound: ^9.30.0
-  rive: ^0.14.3
+  rive: ^0.14.4
   flutter_tts: ^4.2.5
   camera: ^0.12.0
   google_mlkit_face_detection: ^0.13.2
   rxdart: ^0.28.0
-  dio: ^5.9.1
+  dio: ^5.9.2
   speech_to_text: ^7.3.0
+  loading_animation_widget: ^1.3.0
+  video_player: ^2.11.0
+#  better_player: ^0.0.84
+#  path_provider: ^2.1.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  build_runner: ^2.11.1
+  build_runner: ^2.12.1
   retrofit_generator: ^10.2.3
 
 
@@ -45,6 +49,7 @@ flutter:
   generate: true
 
   assets:
-    - assets/html/
-    - assets/avatar/
     - assets/robot/
+    - assets/logo/
+    - assets/videos/
+    - assets/webps/
